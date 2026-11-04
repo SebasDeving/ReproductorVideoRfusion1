@@ -14,10 +14,11 @@
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>RadioFusion1 RTV</title>
+  <title>VIP RTV</title>
 
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <script src="https://www.youtube.com/iframe_api"></script>
+  <script id="sonic_js" data-port="8048" src="https://stream9.hcnetwork.net/cp/widgets.js?r=4"></script>
 
   <style>
     :root {
@@ -188,19 +189,42 @@
   letter-spacing: 1.4px;
 }
 
-.visual-glitter {
+.vip-effects {
   position: absolute;
   z-index: 2;
   inset: 0;
-
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-  opacity: .65;
-  mix-blend-mode: screen;
-
+  overflow: hidden;
   pointer-events: none;
+}
+
+.vip-effect {
+  position: absolute;
+  color: #fff;
+  opacity: 0;
+  line-height: 1;
+  -webkit-text-stroke: .35px rgba(0,0,0,.72);
+  text-shadow:
+    0 1px 3px rgba(0,0,0,.85),
+    0 0 5px #fff,
+    0 0 12px rgba(255,255,255,.95),
+    0 0 22px rgba(255,255,255,.6);
+  animation: vipGlitter 3.6s ease-in-out infinite;
+}
+
+.vip-effect.note-1 { left: 16%; top: 25%; font-size: 22px; animation-delay: -.2s; }
+.vip-effect.note-2 { right: 13%; top: 30%; font-size: 27px; animation-delay: -1.5s; }
+.vip-effect.note-3 { left: 25%; bottom: 23%; font-size: 18px; animation-delay: -2.4s; }
+.vip-effect.note-4 { right: 22%; bottom: 20%; font-size: 21px; animation-delay: -.9s; }
+.vip-effect.spark-1 { left: 10%; top: 50%; font-size: 22px; animation-delay: -1.1s; }
+.vip-effect.spark-2 { right: 10%; top: 52%; font-size: 18px; animation-delay: -2.1s; }
+.vip-effect.spark-3 { left: 42%; top: 18%; font-size: 14px; animation-delay: -2.8s; }
+.vip-effect.spark-4 { right: 37%; bottom: 15%; font-size: 16px; animation-delay: -.5s; }
+
+@keyframes vipGlitter {
+  0%, 100% { opacity: 0; transform: translateY(7px) scale(.55) rotate(-10deg); }
+  24% { opacity: .95; }
+  50% { opacity: .72; transform: translateY(-5px) scale(1.1) rotate(7deg); }
+  76% { opacity: 1; }
 }
 
 .visual-light {
@@ -1160,7 +1184,7 @@
     }
 
     .radio-cover-wrap::before {
-      content: "RADIO\A FUSION 1";
+      content: "VIP";
       position: absolute;
       inset: 0;
       display: grid;
@@ -1640,13 +1664,143 @@
     html.recstream-pip-root .pip-drag-handle {
       display: none !important;
     }
+
+    /* =====================================================
+       TEMA TRANSPARENTE / MARCA VIP
+       ===================================================== */
+    html,
+    body {
+      background: transparent;
+    }
+
+    body {
+      min-height: 100vh;
+      background-image: url("https://xatimg.com/image/hpJ8nQjobN24.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+
+    .lasvegas-player {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, .48);
+      box-shadow:
+        0 0 10px rgba(255, 255, 255, .13),
+        0 0 0 1px rgba(35, 35, 35, .28);
+    }
+
+    .visual-panel {
+      border-right-color: rgba(255, 255, 255, .34);
+    }
+
+    .station-marquee,
+    .country-strip {
+      border-top-color: rgba(255, 255, 255, .30);
+    }
+
+    .visual-panel,
+    .visual-logo-area,
+    .station-marquee,
+    .country-strip,
+    .stream-info,
+    .player-mode-switch {
+      background: transparent;
+      border-color: rgba(255, 255, 255, .46);
+      box-shadow:
+        0 0 9px rgba(255, 255, 255, .11),
+        0 0 0 1px rgba(35, 35, 35, .25);
+    }
+
+    .stream-info {
+      gap: 7px;
+      border-top-color: rgba(255, 255, 255, .32);
+    }
+
+    .info-item {
+      background: rgba(55, 55, 55, .20);
+      border-color: rgba(255, 255, 255, .42);
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 255, 255, .08),
+        0 2px 8px rgba(0, 0, 0, .18);
+      backdrop-filter: blur(3px);
+    }
+
+    .info-item span {
+      color: #d2d2d2;
+      font-weight: 800;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, .95);
+    }
+
+    .info-item strong {
+      color: #f4f4f4;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 1);
+    }
+
+    .visual-logo-area::before,
+    .visual-light {
+      background: transparent;
+      box-shadow: none;
+      filter: none;
+    }
+
+    .visual-brand {
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .9);
+    }
+
+    .station-marquee-track,
+    .country-track,
+    .info-item,
+    .radio-main,
+    .player-mode-btn {
+      text-shadow: 0 1px 5px rgba(0, 0, 0, .9);
+    }
+
+    .visual-brand-name {
+      margin-top: 0;
+      color: #fff;
+      font-size: 42px;
+      letter-spacing: 6px;
+    }
+
+    .visual-brand-frequency,
+    .radio-live-pill,
+    .radio-meta-item,
+    .radio-control-btn,
+    .radio-history-btn,
+    .radio-history {
+      background: rgba(0, 0, 0, .18);
+      backdrop-filter: blur(6px);
+    }
+
+    .radio-audio-player,
+    .radio-cover-side,
+    .radio-main {
+      background: transparent;
+    }
+
+    .radio-audio-player::before,
+    .radio-audio-player::after {
+      display: none;
+    }
+
+    .radio-cover-wrap::before {
+      content: "VIP";
+      background: transparent;
+      font-size: 32px;
+      letter-spacing: 6px;
+    }
+
+    .radio-cover {
+      background: transparent;
+    }
 </style>
 <style>._content_1h9d5_1{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none}._content_1h9d5_1 div{background:#2424244d;color:#fff!important;padding:24px;font-size:48px;font-weight:700;border-radius:16px}._flexBox_9xdww_14{flex-flow:unset}._gap_extraTiny_9xdww_18{gap:2px}._gap_tiny_9xdww_22{gap:4px}._gap_extraSmall_9xdww_26{gap:6px}._gap_small_9xdww_30{gap:8px}._gap_medium_9xdww_34{gap:16px}._gap_normal_9xdww_38{gap:24px}._gap_large_9xdww_42{gap:32px}._gap_xLarge_9xdww_46{gap:48px}._gap_xxLarge_9xdww_50{gap:56px}._gap_extraLarge_9xdww_54{gap:64px}._column_9xdww_58{flex-direction:column!important}._flexWrap_9xdww_62{flex-wrap:wrap}
 </style></head>
 
 <body>
 
-  <section class="lasvegas-player" id="rtv-player-panel">
+  <section class="lasvegas-player radio-mode" id="rtv-player-panel">
 
     <!-- =================================================
          LADO IZQUIERDO
@@ -1656,13 +1810,21 @@
 
       <div class="visual-logo-area">
 
-        <div class="visual-brand" aria-label="RadioFusion1">
-          <span class="visual-brand-radio">RADIO</span>
-          <span class="visual-brand-name">FUSION 1</span>
+        <div class="visual-brand" aria-label="VIP">
+          <span class="visual-brand-name">VIP</span>
           <span class="visual-brand-frequency">RADIO TV</span>
         </div>
 
-        <img class="visual-glitter" src="https://i.imgur.com/9B6KHUc.gif" alt="" aria-hidden="true">
+        <div class="vip-effects" aria-hidden="true">
+          <span class="vip-effect note-1">♪</span>
+          <span class="vip-effect note-2">♫</span>
+          <span class="vip-effect note-3">♫</span>
+          <span class="vip-effect note-4">♪</span>
+          <span class="vip-effect spark-1">✦</span>
+          <span class="vip-effect spark-2">✧</span>
+          <span class="vip-effect spark-3">✦</span>
+          <span class="vip-effect spark-4">✧</span>
+        </div>
 
         <div class="visual-light"></div>
 
@@ -1670,7 +1832,7 @@
 
       <div class="station-marquee">
         <div class="station-marquee-track">
-          RadioFusion1
+          VIP
         </div>
       </div>
 
@@ -1699,7 +1861,7 @@
             el iframe existe ANTES de cargar youtube.com y ya lleva referrerpolicy.
             Así el primer request del embed puede enviar el HTTP Referer.
           -->
-          <iframe id="youtube-player" title="RadioFusion1 YouTube" src="https://www.youtube.com/embed/oczUxzWmTpQ?enablejsapi=1&amp;autoplay=1&amp;mute=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;origin=https%3A%2F%2Fxatradio.com&amp;widget_referrer=https%3A%2F%2Fxatradio.com%2Fplayer%2Fodhnlya4.html" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="">
+          <iframe id="youtube-player" title="VIP YouTube" src="https://www.youtube.com/embed/oczUxzWmTpQ?enablejsapi=1&amp;autoplay=1&amp;mute=1&amp;controls=0&amp;disablekb=1&amp;fs=0&amp;playsinline=1&amp;rel=0&amp;modestbranding=1&amp;iv_load_policy=3&amp;cc_load_policy=0&amp;origin=https%3A%2F%2Fxatradio.com&amp;widget_referrer=https%3A%2F%2Fxatradio.com%2Fplayer%2Fodhnlya4.html" referrerpolicy="strict-origin-when-cross-origin" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen="">
           </iframe>
         </div>
 
@@ -1795,27 +1957,27 @@
 
     </main>
 
-  <section class="radio-audio-player" id="radio-player-panel" hidden="">
+  <section class="radio-audio-player" id="radio-player-panel">
     <div class="radio-cover-side">
       <div class="radio-cover-wrap">
         <img class="radio-cover" id="radio-cover" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Portada de la canción">
         <div class="radio-live-pill" id="radio-dj-pill">
           <span class="radio-live-dot"></span>
-          <span id="radio-dj-text">DJ EN VIVO · No DJ</span>
+          <span id="radio-dj-text">AutoDJ</span>
         </div>
       </div>
     </div>
 
     <div class="radio-main">
       <div>
-        <div class="radio-eyebrow">RADIOFUSION1</div>
+        <div class="radio-eyebrow">VIP</div>
         <div class="radio-title" id="radio-now-playing">Carlos Rivera - Te Esperaba (Lyric Video)</div>
       </div>
 
       <div class="radio-meta-grid">
         <div class="radio-meta-item">
           <span>Emisión</span>
-          <strong id="radio-mode-text">DJ EN VIVO · No DJ</strong>
+          <strong id="radio-mode-text">AutoDJ</strong>
         </div>
         <div class="radio-meta-item">
           <span>Oyentes</span>
@@ -1844,7 +2006,7 @@
         <button class="radio-history-btn" type="button" id="radio-history-toggle" aria-expanded="false">HISTORIAL</button>
       </div>
 
-      <div class="radio-history" id="radio-history" aria-hidden="true"><div class="radio-history-item">Carlos Rivera - Te Esperaba (Lyric Video)</div><div class="radio-history-item">Ana Gabriel - Las Leyes Del Corazón (Letra)</div><div class="radio-history-item">El Cabron ( Bachata)</div><div class="radio-history-item">Marca MP - Mil Gracias Por Existir (Ft. Grupo Firme)</div><div class="radio-history-item">Jota Grego Music - Si no me acuerdo no pasó</div><div class="radio-history-item">Gloria Trevi - No Querías Lastimarme (Letra 2013)</div><div class="radio-history-item">SPOT RADIOFUSION1</div><div class="radio-history-item">te queda bonito ese corazoncito Letra</div><div class="radio-history-item">Fuimos un casi un tal vez Fabio Duque besos chiquitos Letra Canción Oficial</div><div class="radio-history-item">Banda Blanca - Ay Mamita</div><div class="radio-history-item">Raulin Rodriguez - Morena Yo Soy Tu Marido</div><div class="radio-history-item">LUIS ANGEL - UN AMOR QUE TERMINA ASI (LETRA)</div><div class="radio-history-item">Yiyo Sarante -Corazón de Acero (Letras)(Salsa 2016)</div><div class="radio-history-item">Alex Bueno Un Poco De Ti]Letra</div><div class="radio-history-item">Gilberto Santa Rosa - Un Amor para la Historia (Bolero/Balada)</div><div class="radio-history-item">Grupo Frontera, Carín León - Mutuo (Video Oficial)</div><div class="radio-history-item">Gilberto Santa Rosa - Que alguien me diga</div><div class="radio-history-item">Marca MP - Si Tu Te Fueras De Mi</div><div class="radio-history-item">ABRÁZAME MUY FUERTE (Letra) DANIEL ROBLEDO</div><div class="radio-history-item">RICARDO ARJONA POR QUE ES TAN CRUEL EL AMOR CON LETRA</div></div>
+      <div class="radio-history" id="radio-history" aria-hidden="true"><div class="radio-history-item">Carlos Rivera - Te Esperaba (Lyric Video)</div><div class="radio-history-item">Ana Gabriel - Las Leyes Del Corazón (Letra)</div><div class="radio-history-item">El Cabron ( Bachata)</div><div class="radio-history-item">Marca MP - Mil Gracias Por Existir (Ft. Grupo Firme)</div><div class="radio-history-item">Jota Grego Music - Si no me acuerdo no pasó</div><div class="radio-history-item">Gloria Trevi - No Querías Lastimarme (Letra 2013)</div><div class="radio-history-item">SPOT VIP</div><div class="radio-history-item">te queda bonito ese corazoncito Letra</div><div class="radio-history-item">Fuimos un casi un tal vez Fabio Duque besos chiquitos Letra Canción Oficial</div><div class="radio-history-item">Banda Blanca - Ay Mamita</div><div class="radio-history-item">Raulin Rodriguez - Morena Yo Soy Tu Marido</div><div class="radio-history-item">LUIS ANGEL - UN AMOR QUE TERMINA ASI (LETRA)</div><div class="radio-history-item">Yiyo Sarante -Corazón de Acero (Letras)(Salsa 2016)</div><div class="radio-history-item">Alex Bueno Un Poco De Ti]Letra</div><div class="radio-history-item">Gilberto Santa Rosa - Un Amor para la Historia (Bolero/Balada)</div><div class="radio-history-item">Grupo Frontera, Carín León - Mutuo (Video Oficial)</div><div class="radio-history-item">Gilberto Santa Rosa - Que alguien me diga</div><div class="radio-history-item">Marca MP - Si Tu Te Fueras De Mi</div><div class="radio-history-item">ABRÁZAME MUY FUERTE (Letra) DANIEL ROBLEDO</div><div class="radio-history-item">RICARDO ARJONA POR QUE ES TAN CRUEL EL AMOR CON LETRA</div></div>
 
       <audio id="radio-audio" preload="none" playsinline=""></audio>
     </div>
@@ -1856,8 +2018,18 @@
   
 
   <div class="player-mode-switch" id="player-mode-switch" role="group" aria-label="Cambiar reproductor">
-    <button class="player-mode-btn active" type="button" id="mode-rtv" aria-pressed="true">📺 RADIOTV</button>
-    <button class="player-mode-btn" type="button" id="mode-radio" aria-pressed="false">📻 RADIO</button>
+    <button class="player-mode-btn" type="button" id="mode-rtv" aria-pressed="false">📺 RADIOTV</button>
+    <button class="player-mode-btn active" type="button" id="mode-radio" aria-pressed="true">📻 RADIO</button>
+  </div>
+
+  <!-- El widget oficial de SonicPanel escribe aquí; el reproductor sincroniza estos datos. -->
+  <div id="sonic-metadata-bridge" hidden aria-hidden="true">
+    <span id="sonic_title"></span>
+    <span id="sonic_listeners"></span>
+    <span id="sonic_bitrate"></span>
+    <span id="sonic_dj"></span>
+    <div id="sonic_art_full"></div>
+    <div id="sonic_history"></div>
   </div>
 
 
@@ -3252,7 +3424,7 @@
   <meta charset="utf-8">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>RadioTV | RadioFusion1</title>
+  <title>RadioTV | VIP</title>
   <style>
     html,body{width:100%;height:100%;margin:0;background:#000;overflow:hidden}
     body{font-family:Arial,Helvetica,sans-serif}
@@ -3612,7 +3784,7 @@
       const pipWindow = await pipPromise;
       documentPipWindow = pipWindow;
       documentPipUsesReplica = Boolean(useReplica);
-      pipWindow.document.title = "RadioTV | RadioFusion1";
+      pipWindow.document.title = "RadioTV | VIP";
 
       if (useReplica) {
         /*
@@ -4926,7 +5098,7 @@
 
       if (IS_RECSTREAM_POPOUT) {
         try {
-          document.title = "RadioTV | RadioFusion1";
+          document.title = "RadioTV | VIP";
           window.resizeTo?.(Math.max(380, window.outerWidth), Math.max(240, window.outerHeight));
         } catch (_) {}
       }
@@ -4966,11 +5138,10 @@
 
 <script>
   /* =======================================================
-     RADIOFUSION1 - AUDIO + METADATOS
+     VIP - AUDIO + METADATOS
      ======================================================= */
   (() => {
-    const RADIO_STREAM_URL = "https://radio.technoplayerserver.com/8010/stream";
-    const RADIO_INFO_URL = "https://radio.technoplayerserver.com/cp/get_info.php?p=8010";
+    const RADIO_STREAM_URL = "https://stream9.hcnetwork.net/8048/stream";
     const RADIO_FALLBACK_IMAGE = "https://xatimg.com/image/6faKCmBl5woe.png";
 
     const rtvPanel = document.getElementById("rtv-player-panel");
@@ -5137,7 +5308,7 @@
     function isRealDj(value) {
       const dj = String(value ?? "").trim();
       if (!dj) return false;
-      return !["-", "null", "none", "autodj", "auto dj", "automatico", "automático"].includes(dj.toLowerCase());
+      return !["-", "null", "none", "no dj", "nodj", "autodj", "auto dj", "automatico", "automático"].includes(dj.toLowerCase());
     }
 
     function renderRadioInfo(data) {
@@ -5180,23 +5351,49 @@
       }
     }
 
-    async function updateRadioInfo() {
-      try {
-        const response = await fetch(`${RADIO_INFO_URL}&t=${Date.now()}`, {
-          method: "GET",
-          mode: "cors",
-          cache: "no-store"
-        });
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const data = await response.json();
-        renderRadioInfo(data);
-      } catch (error) {
-        console.warn("No se pudo actualizar la información de la radio:", error);
-        if (!lastRadioInfo) {
-          radioNowPlaying.textContent = "RadioFusion1";
-          radioModeText.textContent = "AutoDJ";
-        }
+    function syncSonicMetadata() {
+      const title = document.getElementById("sonic_title")?.textContent?.trim() || "";
+      const listeners = document.getElementById("sonic_listeners")?.textContent?.trim() || "";
+      const bitrate = document.getElementById("sonic_bitrate")?.textContent?.trim() || "";
+      const djusername = document.getElementById("sonic_dj")?.textContent?.trim() || "";
+      const art = document.querySelector("#sonic_art_full img")?.src || "";
+      const historyHtml = document.getElementById("sonic_history")?.innerHTML || "";
+      const history = historyHtml
+        .split(/<br\s*\/?\s*>/i)
+        .map(cleanHistoryLine)
+        .filter(Boolean);
+
+      if (!title && !listeners && !bitrate && !djusername && !art && !history.length) {
+        return false;
       }
+
+      renderRadioInfo({
+        title: title || lastRadioInfo?.title,
+        listeners: listeners || lastRadioInfo?.listeners || 0,
+        bitrate: bitrate || lastRadioInfo?.bitrate || "--",
+        djusername: djusername || lastRadioInfo?.djusername || "",
+        art: art || lastRadioInfo?.art || "",
+        history: history.length ? history : (lastRadioInfo?.history || [])
+      });
+      return true;
+    }
+
+    function updateRadioInfo() {
+      if (!syncSonicMetadata() && !lastRadioInfo) {
+        radioNowPlaying.textContent = "Cargando metadatos...";
+        radioModeText.textContent = "AutoDJ";
+      }
+    }
+
+    const sonicMetadataBridge = document.getElementById("sonic-metadata-bridge");
+    if (sonicMetadataBridge) {
+      new MutationObserver(syncSonicMetadata).observe(sonicMetadataBridge, {
+        childList: true,
+        subtree: true,
+        characterData: true,
+        attributes: true,
+        attributeFilter: ["src"]
+      });
     }
 
     function updateRadioClock() {
@@ -5232,6 +5429,7 @@
 
     updateRadioClock();
     updateRadioInfo();
+    setPlayerMode("radio");
     setInterval(updateRadioClock, 1000);
     setInterval(updateRadioInfo, 8000);
   })();
